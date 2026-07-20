@@ -115,6 +115,10 @@ test-large-smt-no-forest: ## Run large SMT unit and integration tests without la
 test-large-smt-fjall: ## Run large SMT unit and integration tests with Fjall database backend
 	cargo nextest run --success-output immediate --profile large-smt-no-forest --cargo-profile test-release --package miden-crypto --features smt-kvdb-fjall
 
+.PHONY: test-large-smt-redb
+test-large-smt-redb: ## Run large SMT unit and integration tests with REDB database backend
+	cargo nextest run --success-output immediate --profile large-smt-no-forest --cargo-profile test-release --package miden-crypto --features smt_kvdb_redb
+
 .PHONY: test
 test: test-default test-no-std test-docs test-large-smt ## Run all tests except concurrent SMT tests
 
@@ -210,6 +214,14 @@ bench-large-smt-fjall: ## Run large SMT benchmarks with Fjall storage
 .PHONY: bench-large-smt-fjall-open
 bench-large-smt-fjall-open: ## Run large SMT benchmarks on existing database with Fjall storage
 	cargo run --bin miden-crypto --release --features executable,smt-kvdb-fjall -- --storage rocksdb --open
+
+.PHONY: bench-large-smt-redb
+bench-large-smt-redb: ## Run large SMT benchmarks with REDB storage
+	cargo run --bin miden-crypto --release --features executable,smt_kvdb_redb -- --storage rocksdb --size 1000000 --reset
+
+.PHONY: bench-large-smt-redb-open
+bench-large-smt-redb-open: ## Run large SMT benchmarks on existing database with REDB storage
+	cargo run --bin miden-crypto --release --features executable,smt_kvdb_redb -- --storage rocksdb --open
 
 # --- fuzzing --------------------------------------------------------------------------------
 

@@ -41,6 +41,13 @@ pub type PersistentSmtStorage = persistent::KVDBSmtStorage<fjall_kvdb::FjallKVDB
 #[cfg(all(feature = "smt-kvdb-fjall", not(feature = "smt-kvdb-default")))]
 pub type PersistentSmtStorageSnapshot = persistent::KVDBSnapshotStorage<fjall_kvdb::FjallKVDB>;
 
+#[cfg(all(feature = "smt_kvdb_redb", not(feature = "smt_kvdb_default")))]
+mod redb_kvdb;
+#[cfg(all(feature = "smt_kvdb_redb", not(feature = "smt_kvdb_default")))]
+pub type PersistentSmtStorage = persistent::KVDBSmtStorage<redb_kvdb::RedbKVDB>;
+#[cfg(all(feature = "smt_kvdb_redb", not(feature = "smt_kvdb_default")))]
+pub type PersistentSmtStorageSnapshot = persistent::KVDBSnapshotStorage<redb_kvdb::RedbKVDB>;
+
 mod memory;
 pub use memory::{MemoryStorage, MemoryStorageSnapshot};
 

@@ -82,6 +82,7 @@ proptest            = { default-features = false, version = "1.7" }
 quote               = "1.0"
 rand_chacha         = { default-features = false, version = "0.10" }
 rayon               = "1.10"
+redb                = { default-features = false, version = "4.1.0" }
 rocksdb             = { default-features = false, version = "0.24" }
 rstest              = "0.26"
 seq-macro           = "0.3"
