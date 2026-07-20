@@ -119,6 +119,10 @@ test-large-smt-fjall: ## Run large SMT unit and integration tests with Fjall dat
 test-large-smt-redb: ## Run large SMT unit and integration tests with REDB database backend
 	cargo nextest run --success-output immediate --profile large-smt-no-forest --cargo-profile test-release --package miden-crypto --features smt_kvdb_redb
 
+.PHONY: test-large-smt-turso
+test-large-smt-turso: ## Run large SMT unit and integration tests with Turso database backend
+	cargo nextest run --success-output immediate --profile large-smt-no-forest --cargo-profile test-release --package miden-crypto --features smt_kvdb_turso
+
 .PHONY: test
 test: test-default test-no-std test-docs test-large-smt ## Run all tests except concurrent SMT tests
 
@@ -222,6 +226,14 @@ bench-large-smt-redb: ## Run large SMT benchmarks with REDB storage
 .PHONY: bench-large-smt-redb-open
 bench-large-smt-redb-open: ## Run large SMT benchmarks on existing database with REDB storage
 	cargo run --bin miden-crypto --release --features executable,smt_kvdb_redb -- --storage rocksdb --open
+
+.PHONY: bench-large-smt-turso
+bench-large-smt-turso: ## Run large SMT benchmarks with Turso storage
+	cargo run --bin miden-crypto --release --features executable,smt_kvdb_turso -- --storage rocksdb --size 1000000 --reset
+
+.PHONY: bench-large-smt-turso-open
+bench-large-smt-turso-open: ## Run large SMT benchmarks on existing database with Turso storage
+	cargo run --bin miden-crypto --release --features executable,smt_kvdb_turso -- --storage rocksdb --open
 
 # --- fuzzing --------------------------------------------------------------------------------
 

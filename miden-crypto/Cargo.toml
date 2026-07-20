@@ -94,6 +94,7 @@ smt-kvdb-default  = []
 smt-kvdb-fjall    = ["dep:fjall", "dep:lsm-tree", "smt-kvdb"]
 smt-kvdb-redb     = ["dep:redb", "smt-kvdb"]
 smt-kvdb-rocks    = ["dep:rocksdb", "smt-kvdb"]
+smt-kvdb-turso    = ["dep:tokio", "dep:turso", "smt-kvdb"]
 std               = ["blake3/std", "dep:cc", "miden-serde-utils/std", "once_cell/std", "rand/std", "rand/thread_rng", "serde?/std"]
 testing           = ["arbitrary"]
 
@@ -130,6 +131,8 @@ sha2             = { workspace = true }
 sha3             = { workspace = true }
 subtle           = { workspace = true }
 thiserror        = { workspace = true }
+tokio            = { features = ["rt"], optional = true, workspace = true }
+turso            = { optional = true, workspace = true }
 x25519-dalek     = { features = ["static_secrets"], workspace = true }
 
 # Upstream Plonky3 dependencies

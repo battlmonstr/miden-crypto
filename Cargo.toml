@@ -92,6 +92,8 @@ shake               = { default-features = false, version = "0.1" }
 subtle              = { default-features = false, version = "2.6" }
 syn                 = "2.0"
 tempfile            = "3.20"
+tokio               = { default-features = false, version = "1" }
+turso               = { default-features = false, version = "0.6.1" }
 wycheproof-ng-core  = { default-features = false, version = "0.1.1" }
 wycheproof-ng-dh    = { default-features = false, version = "0.1.1" }
 wycheproof-ng-eddsa = { default-features = false, version = "0.1.1" }

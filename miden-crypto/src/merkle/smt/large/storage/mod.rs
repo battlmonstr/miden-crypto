@@ -48,6 +48,13 @@ pub type PersistentSmtStorage = persistent::KVDBSmtStorage<redb_kvdb::RedbKVDB>;
 #[cfg(all(feature = "smt_kvdb_redb", not(feature = "smt_kvdb_default")))]
 pub type PersistentSmtStorageSnapshot = persistent::KVDBSnapshotStorage<redb_kvdb::RedbKVDB>;
 
+#[cfg(all(feature = "smt_kvdb_turso", not(feature = "smt_kvdb_default")))]
+mod turso_kvdb;
+#[cfg(all(feature = "smt_kvdb_turso", not(feature = "smt_kvdb_default")))]
+pub type PersistentSmtStorage = persistent::KVDBSmtStorage<turso_kvdb::TursoKVDB>;
+#[cfg(all(feature = "smt_kvdb_turso", not(feature = "smt_kvdb_default")))]
+pub type PersistentSmtStorageSnapshot = persistent::KVDBSnapshotStorage<turso_kvdb::TursoKVDB>;
+
 mod memory;
 pub use memory::{MemoryStorage, MemoryStorageSnapshot};
 
